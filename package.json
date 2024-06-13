@@ -1,6 +1,6 @@
 {
-  "name": "ts-esm-template",
-  "version": "1.0.0",
+  "name": "cross-shell",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "type": "module",
   "author": "Donghua Liu <liudonghua123@gmail.com> (https://liudonghua.com/)",
@@ -11,13 +11,13 @@
     "typedoc",
     "tsx"
   ],
-  "homepage": "https://github.com/liudonghua123/ts-esm-template#readme",
+  "homepage": "https://github.com/liudonghua123/cross-shell#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liudonghua123/ts-esm-template.git"
+    "url": "git+https://github.com/liudonghua123/cross-shell.git"
   },
   "bugs": {
-    "url": "https://github.com/liudonghua123/ts-esm-template/issues"
+    "url": "https://github.com/liudonghua123/cross-shell/issues"
   },
   "scripts": {
     "build": "tsc",
