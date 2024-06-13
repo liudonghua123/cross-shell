@@ -1,0 +1,46 @@
+{
+  "name": "ts-esm-template",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "type": "module",
+  "author": "Donghua Liu <liudonghua123@gmail.com> (https://liudonghua.com/)",
+  "license": "MIT",
+  "keywords": [
+    "template",
+    "typescript",
+    "typedoc",
+    "tsx"
+  ],
+  "homepage": "https://github.com/liudonghua123/ts-esm-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liudonghua123/ts-esm-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/liudonghua123/ts-esm-template/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "doc": "typedoc src/index.ts",
+    "lint": "npx eslint src",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier --check src",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "test": "node --import tsx --test ./test/index.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.4.0",
+    "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "9.x",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.4.0",
+    "prettier": "^3.3.2",
+    "tsx": "^4.15.2",
+    "typedoc": "^0.25.13",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.0"
+  }
+}
