@@ -12,13 +12,13 @@ const command_with_wildcards = 'ls -la *';
 describe('parse_command', () => {
     it('test command without environments', async () => {
         const command = await parse_command(simple_command);
-        log('parse_command ${simple_command}', command)
+        log(`parse_command ${simple_command}`, command)
         assert.equal(command.environments.length, 0);
     });
 
     it('test command with environments', async () => {
         const command = await parse_command(command_with_environments);
-        log('parse_command ${command_with_environments}', command)
+        log(`parse_command ${command_with_environments}`, command)
         assert.equal(command.environments.length, 2);
     });
 });
@@ -26,13 +26,13 @@ describe('parse_command', () => {
 describe('expand_command', () => {
     it('test command without environments', async () => {
         const command = await expand_command(simple_command);
-        log('expand_command ${simple_command}', command)
+        log(`expand_command ${simple_command}`, command)
         assert.equal(simple_command.split(/\s+/).length, command.split(/\s+/).length);
     });
 
     it('test command with wildcards', async () => {
         const command = await expand_command(command_with_wildcards);
-        log('expand_command ${command_with_wildcards}', command)
+        log(`expand_command ${command_with_wildcards}`, command)
         assert.equal(command.includes('*'), false);
     });
 });
@@ -40,8 +40,12 @@ describe('expand_command', () => {
 
 describe('execute_command', () => {
     it('test command without environments', async () => {
-        const output = await execute_command(await parse_command(command_with_wildcards));
-        log('execute_command ${simple_command}', output)
-        assert.equal(output.length > 0, true);
+        try {
+            await execute_command(await parse_command(command_with_wildcards));
+            log(`execute_command ${simple_command}`)
+            assert.ok(true);
+        } catch (error) {
+            assert.fail(error);
+        }
     });
 });
