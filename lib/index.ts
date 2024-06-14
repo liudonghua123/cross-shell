@@ -1,15 +1,15 @@
-import { exec } from "child_process";
+import { spawn } from "child_process";
 import { glob } from "glob";
 import debug from "debug";
 
 const log = debug("cross-shell:lib");
 
-interface Environment {
+export interface Environment {
   name: string;
   value: string;
 }
 
-interface Command {
+export interface Command {
   command: string;
   environments: Environment[];
 }
@@ -89,18 +89,18 @@ export function execute_command(command: Command): Promise<string> {
     return acc;
   }, initial_acc);
   return new Promise((resolve, reject) => {
-    exec(
-      command.command,
-      { env: { ...process.env, ...command_environments } },
-      (error, stdout, stderr) => {
-        if (error) {
-          log(
-            `execute_command ${command.command} failed: ${error}, output: ${stdout}, stderr: ${stderr}`,
-          );
-          reject(error);
-        }
-        resolve(stdout);
-      },
-    );
+    const child = spawn(command.command, {
+      env: { ...process.env, ...command_environments },
+      shell: true,
+      stdio: "inherit",
+    });
+    child.stdout?.pipe(process.stdout);
+    child.stderr?.pipe(process.stderr);
+    child.on("exit", (code, signal) => {
+      if (code !== 0) {
+        reject(`Command failed with code ${code} and signal ${signal}`);
+      }
+      resolve("");
+    });
   });
 }
