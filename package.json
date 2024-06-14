@@ -28,7 +28,8 @@
     "prettier": "npx prettier --check lib",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
-    "test": "node --import tsx --test ./test/index.ts"
+    "test": "node --import tsx --test ./test/index.ts",
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
