@@ -63,7 +63,9 @@ export async function expand_command(
   for (const part of parts) {
     if (part.includes("*")) {
       // use glob to expand the wildcard
-      const expanded = await glob(part);
+      const expanded = (await glob(part)).map((item) =>
+        item.replace(/\\/g, "/"),
+      );
       expanded_parts.push(...expanded);
       continue;
     }
